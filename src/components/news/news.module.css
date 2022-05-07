@@ -1,0 +1,13 @@
+.news {
+  list-style: none;
+}
+
+.news__item {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+}
+
+.news__container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
