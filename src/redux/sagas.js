@@ -10,7 +10,7 @@ import {
   getPopularNewsFetch,
 } from './news-slice'
 
-function* workGetLatestNewSaga() {
+function* workGetLatestNewsSaga() {
   try {
     const searchString = yield select(({ newsReducer: { searchString } }) => searchString)
     const { hits } = yield call(fetchLatestNews, searchString)
@@ -20,7 +20,7 @@ function* workGetLatestNewSaga() {
   }
 }
 
-function* workGetPopularNewSaga() {
+function* workGetPopularNewsSaga() {
   try {
     const { hits } = yield call(fetchPopularNews)
     yield put(getPopularNewsSuccess(hits))
@@ -30,11 +30,11 @@ function* workGetPopularNewSaga() {
 }
 
 function* watchGetPopularNewsSaga() {
-  yield takeEvery(getPopularNewsFetch.type, workGetPopularNewSaga)
+  yield takeEvery(getPopularNewsFetch.type, workGetPopularNewsSaga)
 }
 
 function* watchGetLatestNewsSaga() {
-  yield takeEvery(getLatestNewsFetch.type, workGetLatestNewSaga)
+  yield takeEvery(getLatestNewsFetch.type, workGetLatestNewsSaga)
 }
 
 function* rootSaga() {
